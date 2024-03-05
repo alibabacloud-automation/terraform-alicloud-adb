@@ -1,10 +1,11 @@
-data "alicloud_vpcs" "default" {
-  name_regex = "default-NODELETING"
-}
+data "alicloud_adb_zones" "default" {}
 
+data "alicloud_vpcs" "default" {
+  name_regex = "^default-NODELETING$"
+}
 data "alicloud_vswitches" "default" {
-  name_regex = "default-zone-g"
-  vpc_id     = data.alicloud_vpcs.default.vpcs.0.id
+  vpc_id  = data.alicloud_vpcs.default.ids.0
+  zone_id = data.alicloud_adb_zones.default.ids.0
 }
 
 module "example" {
