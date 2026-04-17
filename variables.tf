@@ -76,8 +76,3 @@ variable "tags_for" {
   default     = ""
 }
 
-variable "availability_zone" {
-  description = "The available zone to launch modules."
-  type        = string
-  default     = ""
-}

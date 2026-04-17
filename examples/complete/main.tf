@@ -4,8 +4,8 @@ data "alicloud_vpcs" "default" {
   name_regex = "^default-NODELETING$"
 }
 data "alicloud_vswitches" "default" {
-  vpc_id  = data.alicloud_vpcs.default.ids.0
-  zone_id = data.alicloud_adb_zones.default.ids.0
+  vpc_id  = data.alicloud_vpcs.default.ids[0]
+  zone_id = data.alicloud_adb_zones.default.ids[0]
 }
 
 module "example" {
@@ -19,7 +19,7 @@ module "example" {
   mode            = "reserver"
   cluster_version = "3.0"
   payment_type    = "PayAsYouGo"
-  vswitch_id      = data.alicloud_vswitches.default.vswitches.0.id
+  vswitch_id      = data.alicloud_vswitches.default.vswitches[0].id
   security_ips    = var.security_ips
   maintain_time   = var.maintain_time
   tags_created    = var.tags_created
